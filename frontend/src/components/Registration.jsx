@@ -33,7 +33,7 @@ const Registration = () => {
 
   function handleRSubmit(event) {
     event.preventDefault();
-    axios.post("http://localhost:5000/register", {
+    axios.post("/api/register", {
       username: rUser,
       password: rPassword,
     })
