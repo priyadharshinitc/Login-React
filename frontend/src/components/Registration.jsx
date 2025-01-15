@@ -33,7 +33,7 @@ const Registration = () => {
 
   function handleRSubmit(event) {
     event.preventDefault();
-    axios.post("/api/register", {
+    axios.post("https://login-react-alpha.vercel.app/api/register", {
       username: rUser,
       password: rPassword,
     })

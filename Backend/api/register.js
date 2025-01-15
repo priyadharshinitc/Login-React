@@ -3,7 +3,12 @@ import cors from "cors";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+    origin: "https://login-react-alpha.vercel.app", // Replace with your actual Vercel domain
+    methods: ["GET", "POST"], // Allowed methods
+  }));
 
 let users = []; // Temporary in-memory storage
 
@@ -14,7 +19,7 @@ app.post("/register", (req, res) => {
   const existingUser = users.find(
     (user) => user.username === eUsername && user.password === ePassword
   );
-  
+
   if (existingUser) {
     return res.status(400).json({ message: "User Account already exists" });
   }
