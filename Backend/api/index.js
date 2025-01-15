@@ -7,15 +7,15 @@ app.use(cors());
 
 let users = [];
 
-app.get("/", function(req, res) {
+module.exports = app.get("/", function(req, res) {
     res.send("Ready to serve!");
 });
 
-app.post("/", function(req, res) {
+module.exports = app.post("/", function(req, res) {
     res.send("Ready to serve!");
 });
 
-app.post("/login", function(req, res) {
+module.exports = app.post("/login", function(req, res) {
     const {username: eUsername, password: ePassword} = req.body;
     
     // Check if user already exists
@@ -32,7 +32,7 @@ app.post("/login", function(req, res) {
     }
 });
 
-app.post("/register", function(req, res) {
+module.exports = app.post("/register", function(req, res) {
     const {username: eUsername, password: ePassword} = req.body;
     
     // Check if user already exists
@@ -46,6 +46,6 @@ app.post("/register", function(req, res) {
     res.status(200).json({message: "User Account registered successfully!"});
 });
 
-app.listen("5000", function() {
+module.exports = app.listen("5000", function() {
     console.log("Server started...");
 });
