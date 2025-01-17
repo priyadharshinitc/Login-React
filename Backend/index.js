@@ -1,7 +1,10 @@
 import express from 'express';
+import cors from 'cors';
+
 const app = express();
 
 app.use(express.json()); // Middleware to parse JSON data
+app.use(cors());
 
 // In-memory storage for user details
 const users = [];
