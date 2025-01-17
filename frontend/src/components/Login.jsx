@@ -23,7 +23,7 @@ const Login = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post("https://login-react-alpha.vercel.app/api/login", {username: eUsername, password: ePassword})
+        axios.post("https://login-react-uvuc.onrender.com/api/login", {username: eUsername, password: ePassword})
         .then(function(response) {
             if(response.status === 200) {
                 navigate("/success", {state: {message: response.data.message}});
