@@ -3,12 +3,12 @@ import cors from "cors";
 
 const app = express();
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 
-app.use(cors({
-    origin: "https://login-react-alpha.vercel.app", // Replace with your actual Vercel domain
-    methods: ["GET", "POST"], // Allowed methods
-  }));
+// app.use(cors({
+//     origin: "https://login-react-alpha.vercel.app", // Replace with your actual Vercel domain
+//     methods: ["GET", "POST"], // Allowed methods
+//   }));
 
 let users = []; // Temporary in-memory storage
 
