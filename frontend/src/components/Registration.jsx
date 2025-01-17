@@ -33,7 +33,7 @@ const Registration = () => {
 
   function handleRSubmit(event) {
     event.preventDefault();
-    axios.post("https://login-react-uvuc.onrender.com/api/register", {
+    axios.post("https://login-react-nbys.onrender.com/api/register", {
       username: rUser,
       password: rPassword,
     })
