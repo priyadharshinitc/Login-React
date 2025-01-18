@@ -33,7 +33,7 @@ const Registration = () => {
 
   function handleRSubmit(event) {
     event.preventDefault();
-    axios.post("https://login-react-nbys.onrender.com/register", {
+    axios.post("http://localhost:5000/register", {
       username: rUser,
       password: rPassword,
     })

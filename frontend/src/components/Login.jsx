@@ -23,7 +23,7 @@ const Login = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post("https://login-react-nbys.onrender.com/login", {username: eUsername, password: ePassword})
+        axios.post("http://localhost:5000/login", {username: eUsername, password: ePassword})
         .then(function(response) {
             if(response.status === 200) {
                 navigate("/success", {state: {message: response.data.message}});
@@ -45,7 +45,7 @@ const Login = () => {
     }
 
     return (
-        <div className="container relative w-[350px] h-[350px] border-black rounded-lg flex flex-col justify-around items-center z-10 transition duration-500 backdrop-blur-md bg-[rgba(0,0,0,0.1)] shadow-2xl p-4">
+        <div className="container relative w-[350px] h-[350px] border-black rounded-lg flex flex-col justify-around items-center z-10 transition duration-500 backdrop-blur-md bg-[rgba(0,0,0,0.2)] shadow-2xl p-4">
             <h1 className="text-2xl text-white font-medium my-2">Login Page</h1>
             <form method="post">
                 <input type="text" placeholder="Enter username" name="username" onChange={handleUsername} className="w-full px-4 py-2 mb-3 text-lg text-white border-transparent focus:border-2 focus:border-solid focus:border-[rgba(0,0,0,0.35)] bg-[rgba(0,0,0,0.25)] rounded-xl placeholder-[rgba(255,255,255,0.95)] outline-none font-normal transition-border duration-2000" autoComplete="off"/>

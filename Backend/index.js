@@ -2,48 +2,50 @@ import express from 'express';
 import cors from 'cors';
 
 const app = express();
-
-app.use(express.json()); // Middleware to parse JSON data
+app.use(express.json());
 app.use(cors());
 
-// In-memory storage for user details
-const users = [];
+let users = [];
 
-app.get("/register", (req, res) => {
-    res.send("GET: Register Page");
+app.get("/", function(req, res) {
+    res.send("Ready to serve!");
 });
 
-// Registration endpoint
-app.post("/register", (req, res) => {
-  const { username, password } = req.body;
-
-  // Check if username already exists
-  const existingUser = users.find((user) => user.username === username);
-  if (existingUser) {
-    return res.status(400).json({ message: "User Account already exists." });
-  }
-
-  // Add new user to the in-memory array
-  users.push({ username, password });
-  res.status(201).json({ message: "User registered successfully!" });
+app.post("/", function(req, res) {
+    res.send("Ready to serve!");
 });
 
-app.get("/login", (req, res) => {
-    res.send("GET: Login Page");
+app.post("/login", function(req, res) {
+    const {username: eUsername, password: ePassword} = req.body;
+    
+    // Check if user already exists
+    let existingUser = users.find((user) => user.username === eUsername);
+    if(existingUser) {
+        let passwordMatch = (existingUser.password === ePassword) ? true : false;
+        if(passwordMatch) {
+            return res.status(200).json({message: `You're all set, ${eUsername}! Have a productive day!`});
+        } else {
+            return res.status(401).json({message: "Password Mismatch"});
+        }
+    } else {
+        return res.status(404).json({message: "User account doesn't exist. Please register to Login."});
+    }
 });
 
-// Login endpoint
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+app.post("/register", function(req, res) {
+    const {username: eUsername, password: ePassword} = req.body;
+    
+    // Check if user already exists
+    let existingUser = users.find((user) => user.username === eUsername && user.password === ePassword);
+    if(existingUser) {
+        return res.status(400).json({message: "User Account already exists"});
+    }
 
-  // Check if user exists and password matches
-  const user = users.find((user) => user.username === username && user.password === password);
-  if (user) {
-    res.status(200).json({ message: "Login successful!" });
-  } else {
-    res.status(401).json({ message: "Invalid username or password." });
-  }
+    // Register the new user
+    users.push({username: eUsername, password: ePassword});
+    res.status(200).json({message: "User Account registered successfully!"});
 });
 
-// Start the server
-app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+app.listen("5000", function() {
+    console.log("Server started...");
+});
